@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background-color: #E6E6E6;
+}
+.container {
+	margin-top: 20px;	
+}
+
+.top-container {
+  background-color: #BDBDBD;
+  padding: 30px;
+  text-align: center;
+}
+.content {
+  padding: 16px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 102px;
+}
+

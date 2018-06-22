@@ -1,0 +1,69 @@
+<script>
+function Submitfull() {
+    
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+		
+		var values_arr = []; 
+		values_arr.push(document.getElementById("emp-id").value) ;
+		values_arr.push(document.getElementById("name").value) ;
+		values_arr.push(document.getElementById("surname").value) ;
+		values_arr.push(document.getElementById("BD").value) ;
+		values_arr.push(document.getElementById("salary").value) ;
+		values_arr.push("พนักงานประจำ") ;
+		
+		var myJsonString = JSON.stringify(values_arr);
+        xmlhttp.onreadystatechange = respond_1;
+        xmlhttp.open("POST", "connectSQL/add-fulltime-emp.php", true);
+        xmlhttp.send(myJsonString);  
+		
+		function respond_1() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				document.getElementById('result-saveus').innerHTML = xmlhttp.responseText
+			}
+		}	
+  
+}
+</script>	
+
+<div class="container justify-content-center">
+     <div class="col-md">
+		<form>
+		  <div class="form-group row">
+			<label for="emp-id" class="col-form-label">รหัสพนักงาน :</label>
+			<input type="text" class="form-control" id="emp-id">
+		  </div>		
+		  <div class="form-group row">
+			<label for="name" class="col-form-label">ชื่อ :</label>
+			<div class="col-lg-5">
+			<input type="text" class="form-control" id="name">
+			</div>
+			<label for="surname" class="col-form-label">นามสกุล :</label>
+			<div class="col-lg-5">
+			<input type="text" class="form-control" id="surname">
+			</div>
+		  </div>
+		  <div class="form-group row">
+			<label for="BD" class="col-form-label">วันเกิด :</label>
+			<div class="col-lg-auto">
+			<input type="text" class="form-control" id="BD">
+			</div>
+			<label for="BD" class="col-form-label">(ปี-เดือน-วัน)</label>
+		  </div>
+		  <div class="form-group row">
+			<label for="salary" class="col-form-label">อัตราเงินเดือนที่ต้องการ :</label>
+			<div class="col-lg-auto">
+			<input type="text" class="form-control" id="salary">
+			</div>
+			<label for="salary" class="col-form-label">บาท</label>
+		  </div>
+		</form>
+		<button type="submit" class="btn btn-primary" onclick="Submitfull()">บันทึกข้อมูล</button>	
+     </div>	
+	 <div id="result-saveus">
+	 </div>
+</div>

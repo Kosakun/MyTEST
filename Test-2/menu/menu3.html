@@ -1,0 +1,133 @@
+<script>
+
+function Cal_Fcom() {
+
+	var result = ((parseFloat($('#Fsalary_label').text()))/1.07).toFixed(3);
+	console.log(result); 
+	
+	$(function(){
+		$("#result_Fsalary").text("ค่าตอบแทน : " + result + "  บาท");  // 	  
+	});
+
+		var values_arr = []; 
+		values_arr.push(result) ;
+		values_arr.push(document.getElementById("FID_label").innerHTML) ;
+		
+		var myJsonString = JSON.stringify(values_arr);
+        xmlhttp.onreadystatechange = respond_Cal_Fcom;
+        xmlhttp.open("POST", "connectSQL/emp-result-cal.php", true);
+        xmlhttp.send(myJsonString);  
+		
+		function respond_Cal_Fcom() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				console.log(xmlhttp.responseText) ;
+			}
+		}		
+}	
+
+function Cal_Pcom() {
+
+	var result =  ((parseFloat($('#Pcom_label').text()))*(parseFloat($('#hour').val()))).toFixed(3) ;
+	console.log(result); 
+	
+	$(function(){
+		$("#result_Pcom").text("ค่าตอบแทน : " + result + "  บาท");  // 	  
+	});
+
+		var values_arr = []; 
+		values_arr.push(result) ;
+		values_arr.push(document.getElementById("PID_label").innerHTML) ;
+		
+		var myJsonString = JSON.stringify(values_arr);
+        xmlhttp.onreadystatechange = respond_Cal_Fcom;
+        xmlhttp.open("POST", "connectSQL/emp-result-cal.php", true);
+        xmlhttp.send(myJsonString);  
+		
+		function respond_Cal_Fcom() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				console.log(xmlhttp.responseText) ;
+			}
+		}	
+}
+</script>	
+
+<div class="container justify-content-center">
+     <div class="col-md">
+		
+		<table class="table table-bordered">
+		  <thead>
+			<tr>
+			  <th scope="col-auto">ลำดับ</th>
+			  <th scope="col-auto">รหัสพนักงาน</th>
+			  <th scope="col-auto">ชื่อ-นามสกุล</th>
+			  <th scope="col-auto">วันเกิด</th>
+			  <th scope="col-auto">ประเถท</th>
+			  <th scope="col-auto">*</th>
+			</tr>
+		  </thead>
+		  <tbody id="emp-list">
+		  </tbody>
+		</table>
+	 
+     </div>	
+</div>
+
+<div class="modal fade" id="pay_salary" role="dialog">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="sc_modal_title">หน้าคำนวณค่าตอบแทนพนักงานประจำ</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+		    <div class="modal-body">	
+			
+				<div id="FID_label" style="display: none;"></div> 
+				<div id="Fsalary_label" style="display: none;"></div>
+				
+				<label>ชื่อ - สกุลผู้ประเมินค่าตอบแทน </label><br>
+				<b><label id="FName_label">****</label></b><br>
+				<label>ประเถทพนักงาน</label><br>
+				<b><label id="FType_label">****</label></b><br>
+				<hr>
+				<div class="row justify-content-center">
+					<button type="submit" class="btn btn-primary btn-sm" onclick="Cal_Fcom()">คำนวณ</button>	<br>
+					<table class="table table-bordered" style="width:90%;margin-top:5px">
+					  <tr style="text-align:center;"><th id="result_Fsalary">ค่าตอบแทน : xx,xxx บาท</th></tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="pay_com" role="dialog">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="sc_modal_title">หน้าคำนวณค่าตอบแทนพนักงงานชั่วคราว</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+		    <div class="modal-body">			
+
+				<div id="PID_label" style="display: none;"></div> 
+				<div id="Pcom_label" style="display: none;"></div>			
+			
+				<label>ชื่อ - สกุลผู้ประเมินค่าตอบแทน </label><br>
+				<b><label id="PName_label">****</label></b><br>
+				<label>ประเถทพนักงาน</label><br>
+				<b><label id="PType_label">****</label></b><br>
+				<hr>
+				<div class="row justify-content-center">
+					<label for="hour" class="col-form-label">ชั่วโมงที่ทำงาน  :</label>
+					<input type="text"id="hour" value="0">			
+				</div>
+				<div class="row justify-content-center" style="margin-top:5px">
+					<button type="submit" class="btn btn-primary btn-sm" onclick="Cal_Pcom()">คำนวณ</button>
+					<table class="table table-bordered" style="width:90%;margin-top:5px">
+					<tr style="text-align:center;"><th id="result_Pcom">ค่าตอบแทน : xx,xxx บาท</th></tr>
+					</table>
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>

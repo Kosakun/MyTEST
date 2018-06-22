@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CalculateCompensationTransactionBean</title>
+<meta charset="UTF-8">
+
+<!-- Include For Jquery 3.3.1 -->
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+<!-- Include For Bootstrap 4.0 -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+<!-- Include For My Dev -->
+<link rel="stylesheet" href="css/mycss.css">
+<script src ="js/top.js"></script>
+</head>
+
+<body>
+<div class="top-container">
+  <h1>คำนวณผลตอบแทนของพนักงาน</h1>
+</div>
+
+<!-- Header =Menu= -->
+<div class="header" id="myHeader">
+	<nav class="navbar navbar-dark bg-dark">
+	  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+		<a class="nav-item nav-link active" id="menu1-tab" data-toggle="tab" href="#nav-menu1" role="tab" aria-controls="nav-menu1" aria-selected="true">บันทึกข้อมูลพนักงานประจำ</a>
+		<a class="nav-item nav-link" id="menu2-tab" data-toggle="tab" href="#nav-menu2" role="tab" aria-controls="nav-menu2" aria-selected="false">บันทึกข้อมูลพนักงานชั่วคราว</a>
+		<a class="nav-item nav-link" id="menu3-tab" data-toggle="tab" href="#nav-menu3" role="tab" aria-controls="nav-menu3" aria-selected="false" onclick="employeetable()">รายการพนักงาน</a>
+        <a class="nav-item nav-link" id="menu4-tab" data-toggle="tab" href="#nav-menu4" role="tab" aria-controls="nav-menu4" aria-selected="false" onclick="empcal_table()">รายการผลตอบแทนพนักงาน</a>		
+	  </div>
+	</nav>
+</div>
+
+<!-- Content ==== -->
+<div class="tab-content" id="nav-tabContent">
+	<div class="tab-pane fade show active" id="nav-menu1" role="tabpanel" aria-labelledby="nav-menu1">
+		<div id="menu1-detail"></div>
+	</div>
+	<div class="tab-pane fade" id="nav-menu2" role="tabpanel" aria-labelledby="nav-menu2">
+		<div id="menu2-detail"></div>	
+	</div>
+	<div class="tab-pane fade" id="nav-menu3" role="tabpanel" aria-labelledby="nav-menu3">
+		<div id="menu3-detail"></div>
+	</div>
+	<div class="tab-pane fade" id="nav-menu4" role="tabpanel" aria-labelledby="nav-menu4">
+		<div id="menu4-detail"></div>
+	</div>	
+</div>
+
+<!-- Include For My Dev -->
+<script src ="js/bottom.js"></script>	
+
+</body>
+</html>

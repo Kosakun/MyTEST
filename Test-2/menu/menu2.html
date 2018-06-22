@@ -1,0 +1,69 @@
+<script>
+function Submitpart() {
+	
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+		
+		var values_arr = []; 
+		values_arr.push(document.getElementById("emp-id2").value) ;
+		values_arr.push(document.getElementById("name2").value) ;
+		values_arr.push(document.getElementById("surname2").value) ;
+		values_arr.push(document.getElementById("BD2").value) ;
+		values_arr.push(document.getElementById("compensation").value) ;
+		values_arr.push("พนักงานชั่วคราว") ;
+		
+		var myJsonString = JSON.stringify(values_arr);
+        xmlhttp.onreadystatechange = respond_2;
+        xmlhttp.open("POST", "connectSQL/add-parttime-emp.php", true);
+        xmlhttp.send(myJsonString);  
+		
+		function respond_2() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				document.getElementById('result-saveus2').innerHTML = xmlhttp.responseText
+			}
+		}	
+  
+}
+</script>	
+
+<div class="container justify-content-center">
+     <div class="col-md">
+		<form>
+		  <div class="form-group row">
+			<label for="emp-id2" class="col-form-label">รหัสพนักงาน :</label>
+			<input type="text" class="form-control" id="emp-id2">
+		  </div>		
+		  <div class="form-group row">
+			<label for="name2" class="col-form-label">ชื่อ :</label>
+			<div class="col-lg-5">
+			<input type="text" class="form-control" id="name2">
+			</div>
+			<label for="surname2" class="col-form-label">นามสกุล :</label>
+			<div class="col-lg-5">
+			<input type="text" class="form-control" id="surname2">
+			</div>
+		  </div>
+		  <div class="form-group row">
+			<label for="BD2" class="col-form-label">วันเกิด :</label>
+			<div class="col-lg-auto">
+			<input type="text" class="form-control" id="BD2">
+			</div>
+			<label for="BD2" class="col-form-label">(ปี-เดือน-วัน)</label>
+		  </div>
+		  <div class="form-group row">
+			<label for="compensation" class="col-form-label">อัตราเงินเดือนที่ต้องการ :</label>
+			<div class="col-lg-auto">
+			<input type="text" class="form-control" id="compensation">
+			</div>
+			<label for="compensation" class="col-form-label">บาทต่อชั่วโมง</label>
+		  </div>
+		</form>
+		<button type="submit" class="btn btn-primary" onclick="Submitpart()">บันทึกข้อมูล</button>	
+     </div>	
+	 <div id="result-saveus2">
+	 </div>
+</div>
